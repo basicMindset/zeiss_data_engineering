@@ -29,5 +29,6 @@ This project was made to fulfill the homework task for Zeiss Data Engineering
 
 Any advice for common problems or issues.
 ```
-command to run if program contains helper info
+Saving output is part of the calculation process because 
+the return of the final list of data has issues because of the list append.
 ```
