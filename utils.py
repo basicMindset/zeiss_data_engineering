@@ -2,9 +2,25 @@
 
 import csv
 import logging
-from pathlib import Path
 import pyarrow.parquet as pq
-from typing import List
+from pyarrow import Table
+from pathlib import Path
+from datetime import datetime as dt
+from typing import Dict, List
+
+
+def get_unique_days(data: List, time_key: str) -> Dict:
+    """ Create dictionary with unique date values as keys and empty lists as values.
+
+    :param data: Input table.
+    :param time_key: Column name of time.
+    """
+    unique_list_of_days = [dt.strftime(sub[time_key], "%Y-%m-%d") for sub in data]
+    days = sorted(list(set(unique_list_of_days)), key=lambda x: dt.strptime(x, '%Y-%m-%d'))
+
+    u_days = {i: [] for i in days}
+
+    return u_days
 
 
 def make_dict(csv_file_path):

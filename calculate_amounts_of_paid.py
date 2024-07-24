@@ -47,11 +47,11 @@ def get_total_amount(data: List, cols: List, reporting_airp: Dict, airp: List) -
     return final
 
 
-def calc_amounts_of_paid(table: Table, file_name: str):
+def calc_amounts_of_paid(table: Table, file_name_date: str) -> None:
     """Calculate the amounts paid (tipAmount, tollsAmount, totalAmount) by airports (rateCodeId).
 
     :param table: Input pyarrow table.
-    :param file_name: Name of the input file.
+    :param file_name_date: Date from file name.
     """
     logging.info(f"Calculate total amount for airports.")
     reporting_cols = ["RatecodeID", "tip_amount", "tolls_amount", "total_amount"]
@@ -71,4 +71,4 @@ def calc_amounts_of_paid(table: Table, file_name: str):
 
     # saving output, because returning the res list will only store last appended value
     # TODO: should be fixed.
-    save_output(file_name=f"total_amount_{file_name[16:]}", data=final)
+    save_output(file_name=f"total_amount_{file_name_date}", data=final)
