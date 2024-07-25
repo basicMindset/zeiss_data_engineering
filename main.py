@@ -1,8 +1,8 @@
 import logging
 import sys
-from calculate_amounts_of_paid import calc_amounts_of_paid
-from calculate_shortest_longest import calc_shortest_longest
-from calculate_payment_type_rate import calc_payment_type_rate
+from scripts.calculate_amounts_of_paid import calc_amounts_of_paid
+from scripts.calculate_payment_type_rate import calc_payment_type_rate
+from scripts.calculate_shortest_longest import calc_shortest_longest
 from utils import read_file
 
 
@@ -26,12 +26,12 @@ if __name__ == '__main__':
     data = read_file(file_name)
 
     # Exercise #1
-    calc_shortest_longest(table=data, file_name_date=file_name_date)
+    calc_shortest_longest(table=data, file_name_date=file_name_date, is_test=False)
 
     # Exercise #2
     calc_amounts_of_paid(table=data, file_name_date=file_name_date)
 
     # Exercise #3
-    calc_payment_type_rate(table=data, file_name_date=file_name_date)
+    calc_payment_type_rate(table=data, file_name_date=file_name_date, is_test=False)
 
     logging.info(f"Data processing finished running")

@@ -1,5 +1,5 @@
 import logging
-from typing import Dict, List
+from typing import Dict, List, Union
 from pyarrow import Table
 from utils import make_dict, save_output
 from pathlib import Path
@@ -11,7 +11,7 @@ def get_airports(airport_ids: List) -> Dict:
     :param airport_ids: Airport IDs.
     """
     # Read taxi_zone_lookup.csv to decode airport codes
-    airport_lookup_list = make_dict(csv_file_path=f"{Path(__file__).parent}/data/taxi_zone_lookup.csv")
+    airport_lookup_list = make_dict(csv_file_path=f"{Path(__file__).parent.parent}/data/taxi_zone_lookup.csv")
 
     used_airports = {int(j.get("LocationID")): j.get("Zone")
                      for j in airport_lookup_list
@@ -68,7 +68,6 @@ def calc_amounts_of_paid(table: Table, file_name_date: str) -> None:
                              cols=reporting_cols,
                              reporting_airp=reporting_airports_zones,
                              airp=unique_airports)
-
     # saving output, because returning the res list will only store last appended value
     # TODO: should be fixed.
-    save_output(file_name=f"total_amount_{file_name_date}", data=final)
+    save_output(file_name=f"payment_type_{file_name_date}", data=final)

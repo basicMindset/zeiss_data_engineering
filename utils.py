@@ -3,7 +3,6 @@
 import csv
 import logging
 import pyarrow.parquet as pq
-from pyarrow import Table
 from pathlib import Path
 from datetime import datetime as dt
 from typing import Dict, List
