@@ -14,12 +14,10 @@ def get_unique_days(data: List, time_key: str) -> Dict:
     :param data: Input table.
     :param time_key: Column name of time.
     """
-    unique_list_of_days = [dt.strftime(sub[time_key], "%Y-%m-%d") for sub in data]
-    days = sorted(list(set(unique_list_of_days)), key=lambda x: dt.strptime(x, '%Y-%m-%d'))
+    unique_days = {dt.strftime(sub[time_key], "%Y-%m-%d") for sub in data}
+    sorted_days = sorted(unique_days, key=lambda x: dt.strptime(x, '%Y-%m-%d'))
 
-    u_days = {i: [] for i in days}
-
-    return u_days
+    return {day: [] for day in sorted_days}
 
 
 def make_dict(csv_file_path):

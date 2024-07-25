@@ -38,8 +38,6 @@ def payment_type_rate(data: List,
                 payments[f"payments_type_{identifier}"] = pays
                 res.append({"date": payments["date"], "payment_type": pays["type"], "rate (%)": pays["rate (%)"]})
     if not is_test:
-        # saving output, because returning the res list will only store last appended value
-        # TODO: should be fixed.
         save_output(file_name=f"payment_type_{file_name_date}", data=res)
     else:
         return res
@@ -68,6 +66,3 @@ def calc_payment_type_rate(table: Table, file_name_date: str, is_test: bool) -> 
                       payment_types=payment_types,
                       file_name_date=file_name_date,
                       is_test=is_test)
-
-
-

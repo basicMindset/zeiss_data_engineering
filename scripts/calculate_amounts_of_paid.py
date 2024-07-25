@@ -1,5 +1,5 @@
 import logging
-from typing import Dict, List, Union
+from typing import Dict, List
 from pyarrow import Table
 from utils import make_dict, save_output
 from pathlib import Path
