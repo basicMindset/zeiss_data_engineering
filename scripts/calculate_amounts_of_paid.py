@@ -74,4 +74,4 @@ def calc_amounts_of_paid(table: Table, file_name_date: str) -> None:
                              airp=unique_airports)
     # saving output, because returning the res list will only store last appended value
     # TODO: should be fixed.
-    save_output(file_name=f"payment_type_{file_name_date}", data=final)
+    save_output(file_name=f"total_amount_{file_name_date}", data=final)
