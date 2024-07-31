@@ -59,8 +59,12 @@ def calc_amounts_of_paid(table: Table, file_name_date: str) -> None:
     # Create subset of data for shortest, longest trip calculations
     subset_data = table.select(reporting_cols).to_pylist()
 
-    # In "RatecodeID" column there are a None values, replacing them with 0
-    res = [sub[reporting_cols[0]] if sub[reporting_cols[0]] else 0 for sub in subset_data]
+    for i in subset_data:
+        if not i.get(reporting_cols[0]):
+            i.update({reporting_cols[0]: 264})
+
+    # In "RatecodeID" column there are a None values, replacing them with 264 ["Unknown","N/A","N/A"]
+    res = [sub[reporting_cols[0]] if sub[reporting_cols[0]] else 264 for sub in subset_data]
     unique_airports = sorted(list(set(res)))
     reporting_airports_zones = get_airports(airport_ids=unique_airports)
 
