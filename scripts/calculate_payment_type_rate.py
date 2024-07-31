@@ -8,6 +8,7 @@ from datetime import datetime as dt
 
 
 def get_decoded_payment_types() -> Dict:
+    """Read payment types json."""
     with open(f"{Path(__file__).parent.parent}/data/payment_types.json") as f:
         data = json.load(f)
 
@@ -20,6 +21,15 @@ def payment_type_rate(data: List,
                       payment_types: Dict,
                       file_name_date: str,
                       is_test: bool) -> Union[List, None]:
+    """Calculate payment type rates.
+
+    :param data: Input data.
+    :param unique_days: Unique days for report.
+    :param reporting_cols: Reporting columns.
+    :param payment_types: Unique payment types.
+    :param file_name_date: Date for output file name.
+    :param is_test: Differentiate test from actual run.
+    """
     res = []
     for k, v in unique_days.items():
         payments = {"date": k}
